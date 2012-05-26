@@ -104,7 +104,8 @@ $otras_leyes=mysql_query("select * from ley where url_votamostodos<>'$url_votamo
         channelUrl : '//'+window.location.hostname+'/channel.php', // Path to your Channel File
         status     : true, // check login status
         cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
+        xfbml      : true,  // parse XFBML
+        oauth : true
       });
 
       // listen for and handle auth.statusChange events
@@ -114,6 +115,7 @@ $otras_leyes=mysql_query("select * from ley where url_votamostodos<>'$url_votamo
           FB.api('/me', function(me){
             if (me.name) {
               document.getElementById('auth-displayname').innerHTML = me.name;
+              document.getElementById('auth-displayimage').src = "https://graph.facebook.com/" + me.id + "/picture?type=square";
             }
           });
           document.getElementById('auth-loggedout').style.display = 'none';
@@ -125,7 +127,15 @@ $otras_leyes=mysql_query("select * from ley where url_votamostodos<>'$url_votamo
         }
       });
 
+      FB.Event.subscribe('auth.login', function(response) {
+        window.location.reload();
+      });
+      FB.Event.subscribe('auth.logout', function(response) {
+        window.location.reload();
+      });      
+
       // respond to clicks on the login and logout links
+      /*
       document.getElementById('auth-loginlink').addEventListener('click', function(){
         FB.login();
         return false;
@@ -133,17 +143,19 @@ $otras_leyes=mysql_query("select * from ley where url_votamostodos<>'$url_votamo
       document.getElementById('auth-logoutlink').addEventListener('click', function(){
         FB.logout();
         return false;
-      }, false); 
+      }, false);
+      */ 
     } 
   </script>
 
   <div id="auth-status">
     <div id="auth-loggedout">
-      <a href="#" id="auth-loginlink">Login</a>
+      <a href="#" onclick="FB.login();return false;" id="auth-loginlink">Login</a>
     </div>
     <div id="auth-loggedin" style="display:none">
-      Hola, <span id="auth-displayname"></span>  
-    (<a href="#" id="auth-logoutlink">logout</a>)
+      Hola, <span id="auth-displayname"></span>
+      <img id="auth-displayimage"/>  
+    (<a href="#" onclick="FB.logout();return false;" id="auth-logoutlink">logout</a>)
   </div>
 
 	<h1><?=$ley["titulo_lleca"]?></h1>
