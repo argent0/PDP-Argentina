@@ -289,15 +289,15 @@ function recortar($texto, $cant_caracteres){
 			<div id="footer">
 				<div class="footer-todas-leyes">
 					<?		
-					$otras_leyes=mysql_query("select * from ley where url_votamostodos<>'$url_votamostodos' order by prioridad", $link);						
-					while($otra_ley=mysql_fetch_array($otras_leyes)) {
+					$todas_leyes=mysql_query("select * from ley order by prioridad", $link);						
+					while($una_ley=mysql_fetch_array($todas_leyes)) {
 					?>					
 						<h3>
-							<a href="<?=$contexto?>ley/<?=$otra_ley["url_votamostodos"]?>"><?=recortar($otra_ley["titulo_lleca"],35)?></a>
+							<a href="<?=$contexto?>ley/<?=$una_ley["url_votamostodos"]?>"><?=recortar($una_ley["titulo_lleca"],35)?></a>
 						</h3>
 					<?		
 					}
-					mysql_free_result($otras_leyes);						
+					mysql_free_result($todas_leyes);						
 					?>					
 				</div>
 				<div class="base-footer">
