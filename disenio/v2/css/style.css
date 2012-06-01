@@ -88,6 +88,27 @@ body{
 	margin-left: 4px;
 }
 
+.sinLogin {
+	float:right;
+	height: 70px;
+	width:450px;
+	margin-top: 7px;
+	color: #666;
+	background-image: url(../img/flecha-login.png);
+	background-repeat: no-repeat;
+	background-position: 280px 0px;	
+}
+
+.ingresarConFacebook {
+	float: left;
+	height: 70px;
+	line-height: 70px;
+	margin-left: 15px;
+	margin-right: 20px;
+	width: 500px;
+	overflow: hidden;	
+}
+
 .loguineado a:hover {
 	color:#FFF;
 }
@@ -95,13 +116,14 @@ body{
 .boton-login {
 	float: left;
 	width: 89px;
-	height: 35px;
+	height: 37px;
 	background-image: url(../img/btn-login.png);
 	background-repeat: no-repeat;
 	text-align: center;
-	color: #FFF;
-	padding-top: 4px;
+	color: white;
+	padding-top: 0px;
 	z-index: 100;
+	background-position: 0px -4px;
 }
 
 a:hover .boton-login {
@@ -119,9 +141,10 @@ a:hover .boton-conocenos {
 	background-image: url(../img/btn-back-blanco.png);
 	background-repeat: no-repeat;
 	text-align: center;
-	color: #000;
+	color: #fff;
 	padding-top: 4px;
 	margin-right: 40px;
+	font-family: KlavikaMedium;
 }
 
 
@@ -271,6 +294,7 @@ a:hover .boton-conocenos {
 	padding-right: 135px;
 }
 
+
 .boton-positivo {
 	float: left;
 	width: 453px;
@@ -317,7 +341,6 @@ a:hover .boton-conocenos {
 	margin-left: 40px;
 	margin-top: 20px;
 }
-
 .banner-parte-superior h5 a {
 	text-decoration: none;
 	color: #666;
@@ -548,3 +571,4 @@ a:hover .boton-conocenos {
 .tituloCheckbox h3 {
 	text-align: justify;
 }
+

@@ -109,7 +109,7 @@ a:hover .boton-login {
 }
 
 a:hover .boton-conocenos {
-	color: #06C;
+	color: #F90;
 }
 
 .boton-conocenos {
@@ -255,22 +255,6 @@ a:hover .boton-conocenos {
 	background-position: 0px -96px;
 }
 
-.banner-botones-voto-a-favor a .boton-positivo p{
-	padding-left: 135px;
-}
-
-.banner-botones-voto-a-favor a .boton-negativo p{
-	padding-left: 135px;
-}
-
-.banner-botones-voto-en-contra a .boton-positivo p{
-	padding-right: 135px;
-}
-
-.banner-botones-voto-en-contra a .boton-negativo p{
-	padding-right: 135px;
-}
-
 .boton-positivo {
 	float: left;
 	width: 453px;
@@ -316,16 +300,6 @@ a:hover .boton-conocenos {
 	padding-left: 34px;
 	margin-left: 40px;
 	margin-top: 20px;
-}
-
-.banner-parte-superior h5 a {
-	text-decoration: none;
-	color: #666;
-}
-
-.banner-parte-superior h5 a:hover {
-	text-decoration: underline;
-	color: #333;
 }
 
 .redes-sociales-banner {
@@ -525,26 +499,4 @@ a:hover .boton-conocenos {
 	text-decoration: underline;
 }
 
-.tituloCheckbox {
-	float: left;
-	width: 850px;
-	height: auto;
-	margin-left: 60px;
-	margin-top: 50px;	
-	text-align: left;
-	color: #666;		
-}
 
-.tituloCheckbox h2 {
-	background-image: url(../img/bullet-tilde.jpg);
-	background-repeat: no-repeat;
-	background-position: 0px 2px;
-	font-size:17px;
-	padding-left: 20px;
-	margin-bottom: 20px;
-	color: #333;
-}
-
-.tituloCheckbox h3 {
-	text-align: justify;
-}

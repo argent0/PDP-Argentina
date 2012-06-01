@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'KlavikaMedium';
+    src: url('../fuentes/klavika-medium-webfont.eot');
+    src: url('../fuentes/klavika-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/klavika-medium-webfont.woff') format('woff'),
+         url('../fuentes/klavika-medium-webfont.ttf') format('truetype'),
+         url('../fuentes/klavika-medium-webfont.svg#KlavikaMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'KlavikaLight';
+    src: url('../fuentes/klavika-light-webfont.eot');
+    src: url('../fuentes/klavika-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/klavika-light-webfont.woff') format('woff'),
+         url('../fuentes/klavika-light-webfont.ttf') format('truetype'),
+         url('../fuentes/klavika-light-webfont.svg#KlavikaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'KlavikaRegular';
+    src: url('../fuentes/klavika-regular-webfont.eot');
+    src: url('../fuentes/klavika-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/klavika-regular-webfont.woff') format('woff'),
+         url('../fuentes/klavika-regular-webfont.ttf') format('truetype'),
+         url('../fuentes/klavika-regular-webfont.svg#KlavikaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
