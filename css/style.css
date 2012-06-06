@@ -54,7 +54,8 @@ body{
 .loguineado {
 	float:right;
 	height: 70px;
-	width:400px;
+	width:350px;
+	margin-left: 50px;
 	margin-top: 7px;
 	background-color: #2873b6;
 	color: #FFF;
@@ -559,16 +560,16 @@ a:hover .boton-conocenos {
 	color: #666;		
 }
 
-.tituloCheckbox h2 {
-	background-image: url(../img/bullet-tilde.jpg);
-	background-repeat: no-repeat;
-	background-position: 0px 2px;
-	font-size:17px;
-	padding-left: 20px;
-	margin-bottom: 20px;
-	color: #333;
-}
-
-.tituloCheckbox h3 {
-	text-align: justify;
+.tituloCheckbox h2 {                                        
+	font-size:16px;                                           
+	margin-bottom: 20px;                                      
+	color: #333;                                              
+	text-align: center;                                       
+	text-transform: uppercase;                                
+}                                                           
+                                                            
+.tituloCheckbox h3 {                                        
+	text-align: justify;                                      
+	padding-left: 70px;                                       
+	padding-right: 70px;                                      
 }

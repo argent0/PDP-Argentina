@@ -55,7 +55,7 @@ if ($id_facebook){
 
 $header_title = "Votamos Todos - " . $ley["titulo_lleca"];
 $header_og_title = "Ley de " . $ley["titulo_lleca"];
-$header_og_url = $site_url . $contexto . "ley/" . $url_votamostodos;
+$current_url = $site_url . $contexto . "ley/" . $url_votamostodos;
 $menu_button1_label = "conocenos";
 $menu_button1_url = $site_url . $contexto . "conocenos.php";
 

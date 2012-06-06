@@ -11,7 +11,7 @@
 		<title><?=$header_title?></title>
 		<meta property="og:title" content="<?=$header_og_title?>" />
 		<meta property="og:type" content="cause" />
-		<meta property="og:url" content="<?=$header_og_url?>" />
+		<meta property="og:url" content="<?=$current_url?>" />
 		<meta property="og:image" content="<?=$site_url . $contexto?>img/logo-cuadrado.jpg" />
 		<meta property="og:site_name" content="Votamos Todos" />
 		<meta property="fb:app_id" content="<?=$facebook_app_id?>" />
@@ -62,12 +62,27 @@
 	      });
 	
 	      FB.Event.subscribe('auth.login', function(response) {
-	        window.location.reload();
+	        window.location = "<?=$current_url?>";
 	      });
 	      FB.Event.subscribe('auth.logout', function(response) {
-	        window.location.reload();
+	    	  //window.location = "<?=$current_url?>";	 
 	      });
 	    } 
+
+      function logoutClicked(){
+  	  	<?
+      	/*
+  	   	$logoutUrlParams = array( 'next' => $current_url );
+  	   	$logoutUrl = $facebook->getLogoutUrl($logoutUrlParams);
+  	  	//window.location = "<?=$logoutUrl?>";
+    	  FB.logout(function(response) {
+	  	  	window.location = "<?=$current_url?>?logout=true";
+    	  });  	  	
+  	  	//window.location = "http://www.google.com";
+    	  */
+  	  	?>            		
+    	  return false;     
+	    }    
 	  </script>
 	
 	  </script>
@@ -75,7 +90,7 @@
 			<div class="sombra-top-wrap">
 			</div>
 			<div id="header">
-				<a href="<?=$site_url . $contexto?>"><h2>Votamos Todos democracia participativa online</h2></a>
+				<a href="<?=$contexto?>"><h2>Votamos Todos democracia participativa online</h2></a>
 				<div id="menu">
 					<a href="<?=$menu_button1_url?>">
 						<div class="boton-conocenos">
@@ -109,11 +124,13 @@
 					<img id="auth-displayimage" width="50" height="50" />
 					<div class="nombreLogin" id="auth-displayname">						
 					</div>
-					<a href="#" onclick="FB.logout();return false;">
+					<!-- 
+					<a href="#" onclick="logoutClicked();">
 						LOGOUT
 					</a>
+					 -->
 				</div>
 				<!--                **********  ******************************************  **********   -->
-				<img src="img/divisor.jpg" width="984" height="3" />
+				<img src="<?=$contexto?>img/divisor.jpg" width="984" height="3" />
 			</div>
       

@@ -25,6 +25,15 @@ $facebook = new Facebook(array(
 		'appId'  => $facebook_app_id,
 		'secret' => $facebook_app_secret,
 ));
+/*
+$doLogout = $_REQUEST["logout"];
+if ($doLogout) {
+	$facebook->destroySession();
+	//$facebook->setSession(NULL);
+}
+*/
+
+
 
 $id_facebook = $facebook->getUser();
 
