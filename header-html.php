@@ -31,7 +31,7 @@
 	
 	    // Init the SDK upon load
 	    window.fbAsyncInit = function() {
-	      FB.init({
+	      FB.init({	      	
 	        appId      : '<?=$facebook_app_id?>', // App ID
 	        channelUrl : '//'+window.location.hostname+'/channel.php', // Path to your Channel File
 	        status     : true, // check login status
@@ -107,12 +107,12 @@
 					</a>
 					*/
 					?>
-					<a href="#" onclick="return false;" id="auth-loggedout">
+					<div onclick="return false;" id="auth-loggedout">
 						<div class="boton-login">
 							<div class="fb-login-button" scope="email" data-show-faces="false" size="large" data-width="250" data-max-rows="1">
               </div>
 						</div>
-					</a>					
+					</div>					
 				</div>
         <div class="sinLogin" id="ayuda-login">
         	<div class="ingresarConFacebook">
