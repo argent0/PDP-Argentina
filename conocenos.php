@@ -32,7 +32,7 @@ include("header-html.php");
                             
         <div class="tituloCheckbox">
         	<h2>&iquest;Ganan plata con el sitio?</h2>
-          <h3>Votamos todos es un proyecto sin fines de lucro. Los que participamos en el proyecto contribuimos aportando nuestro trabajo y recibimos donaciones siempre y cuando no provengan de organizaciones, partidos politicos o empresas que no garantizen una absoluta neutralidad en el apoyo.</h3>
+          <h3>Votamos todos es un proyecto sin fines de lucro. Los que participamos en el proyecto contribuimos aportando nuestro trabajo y recibimos donaciones siempre y cuando no provengan de organizaciones, partidos politicos o empresas que no garanticen una absoluta neutralidad en el apoyo.</h3>
         </div>   
         <div class="tituloCheckbox">
         	<h2>&iquest;Qui&eacute;n hace votamos todos?</h2>
