@@ -104,7 +104,17 @@ if ($votoDosVeces) {
 								<div class="fb-like" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial" href="<?=$url_esta_ley?>">
 								</div>
 								<div class="twitterBanner">
-									<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$url_esta_ley?>" data-text="Ley de <?=$ley["titulo_lleca"]?>" data-via="votamostodos" data-lang="es" data-dnt="true"  data-count="none">Twittear</a>
+									<?
+									$texto_tweet = "Vot&aacute; la ley de " . $ley["titulo_lleca"];
+									if ($voto){
+										if ($voto["voto"]){
+											$texto_tweet = "Vot&eacute; a favor. Ley de " . $ley["titulo_lleca"];
+										} else {
+											$texto_tweet = "Vot&eacute; en contra. Ley de " . $ley["titulo_lleca"];
+										}
+									}
+									?>
+									<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$url_esta_ley?>" data-text="<?=$texto_tweet?>" data-via="votamostodos" data-lang="es" data-dnt="true"  data-count="none">Twittear</a>
 									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
 								</div>
 							</div>
