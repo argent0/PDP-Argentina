@@ -7,7 +7,7 @@
 		<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 		<meta HTTP-EQUIV="EXPIRES" CONTENT="-1">
 		<link rel="stylesheet" type="text/css" href="<?=$contexto?>css/style.css?version=<?=filemtime('css/style.css')?>" />
-		<!-- <script type="text/javascript" src="<?=$contexto?>js/jquery-1.7.2.min.js?version=<?=filemtime('js/jquery-1.7.2.min.js')?>"></script>  -->		
+		<script type="text/javascript" src="<?=$contexto?>js/jquery-1.7.2.min.js?version=<?=filemtime('js/jquery-1.7.2.min.js')?>"></script>		
 		<title><?=$header_title?></title>
 		<meta property="og:title" content="<?=$header_og_title?>" />
 		<meta property="og:type" content="cause" />
@@ -46,7 +46,7 @@
 	          // user has auth'd your app and is logged into Facebook
 	          FB.api('/me', function(me){
 	            if (me.name) {
-	              document.getElementById('auth-displayname').innerHTML = "Bienvenido, " + me.name;
+	              document.getElementById('auth-displayname').innerHTML = "Usuario: " + me.name;
 	              document.getElementById('auth-displayimage').src = "https://graph.facebook.com/" + me.id + "/picture?type=square";
 	            }
 	          });

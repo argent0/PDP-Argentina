@@ -39,11 +39,18 @@ $id_facebook = $facebook->getUser();
 
 
 function recortar($texto, $cant_caracteres){
-	if (strlen($texto) <= $cant_caracteres){
-		return $texto;
-	} else {
-		return substr($texto,0,$cant_caracteres-4) . "...";
+	$texto = html_entity_decode($texto);
+	if (strlen($texto) > $cant_caracteres){
+		$texto = substr($texto,0,$cant_caracteres-4) . "...";
+	}
+	return htmlentities($texto);
+}
+
+function assertNotFalse($value) {
+	if ($value==false) {
+		throw new Exception("Error inesperado, por favor envianos por mail a info@votamostodos.com.ar todo el texto que aparece en la pantalla. Gracias!");
 	}
 }
+
 
 ?>

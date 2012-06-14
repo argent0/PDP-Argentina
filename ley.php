@@ -5,7 +5,9 @@ $url_votamostodos = $_REQUEST["url_votamostodos"];
 $url_esta_ley = $site_url . $contexto . "ley/" . $url_votamostodos; 
 
 $leyes=mysql_query("select * from ley where url_votamostodos='$url_votamostodos'", $link);
+assertNotFalse($leyes);
 $ley=mysql_fetch_array($leyes);
+assertNotFalse($ley);
 mysql_free_result($leyes);
 
 $accion = $_REQUEST["accion"]; 
@@ -17,25 +19,41 @@ if ($accion=="votar_si" || $accion=="votar_no" ) {
 		$user_profile = $facebook->api('/me','GET');
 		$nombre = $user_profile['name'];
 		$email = $user_profile['email'];
-		mysql_query("insert into usuario (id_facebook, nombre, email) values ($id_facebook, '$nombre', '$email')", $link);		
+		$success = mysql_query("insert into usuario (id_facebook, nombre, email) values ($id_facebook, '$nombre', '$email')", $link);
+		assertNotFalse($success);		
 		$usuarios=mysql_query("select * from usuario where id_facebook=$id_facebook", $link);
+		assertNotFalse($usuarios);		
 		$usuario=mysql_fetch_array($usuarios);
+		assertNotFalse($usuario);
 		mysql_free_result($usuarios);
 	}		
 	$id_usuario=$usuario["id"];
+
+	$votosDosVeces=mysql_query("select * from voto where id_ley = " . $ley["id"] . " and id_usuario = " . $id_usuario, $link);
+	assertNotFalse($votosDosVeces);
+	$votoDosVeces=mysql_fetch_array($votosDosVeces);
+	mysql_free_result($votosDosVeces);
 	
-	if ($accion=="votar_si") {
-		mysql_query("insert into voto (id_ley, id_usuario, voto, momento) values (" . $ley["id"] . "," . $id_usuario . ",true,now())", $link);
-		mysql_query("update ley set cant_votos_si=cant_votos_si+1 where id=". $ley["id"], $link);	
+	if (!$votoDosVeces) {
+		if ($accion=="votar_si") {
+			$success = mysql_query("insert into voto (id_ley, id_usuario, voto, momento) values (" . $ley["id"] . "," . $id_usuario . ",true,now())", $link);
+			assertNotFalse($success);
+			$success = mysql_query("update ley set cant_votos_si=cant_votos_si+1 where id=". $ley["id"], $link);	
+			assertNotFalse($success);
+		}
+		if ($accion=="votar_no") {
+			$success = mysql_query("insert into voto (id_ley, id_usuario, voto, momento) values (" . $ley["id"] . "," . $id_usuario . ",false,now())", $link);
+			assertNotFalse($success);
+			$success = mysql_query("update ley set cant_votos_no=cant_votos_no+1 where id=". $ley["id"], $link);	
+			assertNotFalse($success);
+		}
+		
+		$leyes=mysql_query("select * from ley where url_votamostodos='$url_votamostodos'", $link);
+		assertNotFalse($leyes);
+		$ley=mysql_fetch_array($leyes);
+		assertNotFalse($ley);
+		mysql_free_result($leyes);		
 	}
-	if ($accion=="votar_no") {
-		mysql_query("insert into voto (id_ley, id_usuario, voto, momento) values (" . $ley["id"] . "," . $id_usuario . ",false,now())", $link);
-		mysql_query("update ley set cant_votos_no=cant_votos_no+1 where id=". $ley["id"], $link);	
-	}
-	
-	$leyes=mysql_query("select * from ley where url_votamostodos='$url_votamostodos'", $link);
-	$ley=mysql_fetch_array($leyes);
-	mysql_free_result($leyes);	
 }
 
 $cant_votos = $ley["cant_votos_si"] + $ley["cant_votos_no"];
@@ -49,6 +67,7 @@ if ($cant_votos>0) {
 
 if ($id_facebook){
 	$votos=mysql_query("select voto.voto from voto, usuario where id_ley=" . $ley["id"] . " and voto.id_usuario=usuario.id and usuario.id_facebook=$id_facebook", $link);
+	assertNotFalse($votos);
 	$voto=mysql_fetch_array($votos);
 	mysql_free_result($votos);
 }
@@ -63,17 +82,26 @@ $menu_button1_url = $site_url . $contexto . "conocenos.php";
 
 include("header-html.php");
 
+if ($votoDosVeces) {
 ?>
+	<script>
+		$(function() {
+			alert("No se puede votar mas de una vez la misma ley :)");
+		});	
+	</script>
+<?
+}
+?>			
 			<div id="contenido">
 				<div class="titulo-con-fondo">
-					<h2>Expediente <?=$ley["expediente"]?> : <?=recortar($ley["titulo_real"],70)?></h2>
+					<h2 title="<?=$ley["titulo_real"]?>">Expediente <?=$ley["expediente"]?> : <?=recortar($ley["titulo_real"],70)?></h2>
 				</div>
 				<div class="banner-ley">
 					<div class="contenido-banner">
 						<div class="banner-parte-superior">
 							<h5><a target="newTab" href="<?=$ley["url_diputados"]?>">Leer el proyecto de ley</a></h5>
 							<div class="redes-sociales-banner">
-								<div class="fb-like" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial">
+								<div class="fb-like" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial" href="<?=$url_esta_ley?>">
 								</div>
 								<div class="twitterBanner">
 									<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$url_esta_ley?>" data-text="Ley de <?=$ley["titulo_lleca"]?>" data-via="votamostodos" data-lang="es" data-dnt="true"  data-count="none">Twittear</a>
@@ -96,7 +124,17 @@ include("header-html.php");
 										document.getElementById('accion').value = voto;
 									  document.forms["votarForm"].submit();				    
 								  } else {
-									  alert("Hay que hacer click en 'login' antes de poder votar.");
+									  FB.login( function(response) { 
+										  if (response.authResponse) {
+											  FB.getLoginStatus( function(response) { 
+												  if (response.status === 'connected') { 
+													  document.getElementById('accion').value = voto; 
+													  document.forms["votarForm"].submit();
+													} 
+												});
+											}
+										});
+									  //alert("Hay que hacer click en 'Entrar' antes de poder votar.");
 									}
 								});
 							}
