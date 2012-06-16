@@ -1,0 +1,13 @@
+RewriteEngine on
+
+# Ojo que esto en un momento andaba para todas las url (incluidas http://votamostodos.com/, 
+# http://www.votamostodos.com/beta/ley/despenalizacion-de-las-drogas-para-consumo-personal)
+# salvo para http://www.votamostodos.com y http://www.votamostodos.com/
+RewriteCond %{HTTP_HOST} ^(.*)votamostodos.com$ [NC]
+RewriteRule ^(.*)$ http://www.votamostodos.com.ar/$1 [R=301,L]
+
+RewriteCond  %{REQUEST_URI}  ^/ley/.+$
+RewriteRule ^ley/(.+)$ ley.php?url_votamostodos=$1 [L]
+
+#RewriteCond  %{REQUEST_URI}  ^/beta/ley/.+$
+#RewriteRule ^beta/ley/(.+)$ beta/ley.php?url_votamostodos=$1 [L]
