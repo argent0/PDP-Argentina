@@ -52,7 +52,9 @@ if ($accion=="votar_si" || $accion=="votar_no" ) {
 		assertNotFalse($leyes);
 		$ley=mysql_fetch_array($leyes);
 		assertNotFalse($ley);
-		mysql_free_result($leyes);		
+		mysql_free_result($leyes);
+
+		$acaboDeVotar = true;
 	}
 }
 
@@ -79,6 +81,15 @@ $menu_button1_label = "conocenos";
 $menu_button1_url = $site_url . $contexto . "conocenos.php";
 
 
+$texto_tweet = "Vot&aacute; la ley de " . $ley["titulo_lleca"];
+if ($voto){
+	if ($voto["voto"]){
+		$texto_tweet = "Vot&eacute; a favor. Ley de " . $ley["titulo_lleca"];
+	} else {
+		$texto_tweet = "Vot&eacute; en contra. Ley de " . $ley["titulo_lleca"];
+	}
+}
+
 
 include("header-html.php");
 
@@ -91,7 +102,18 @@ if ($votoDosVeces) {
 	</script>
 <?
 }
+
+if ($votoDosVeces) {
+?>
+	<script>
+		$(function() {
+			//mostrar_ocultar_popup();
+		});	
+	</script>
+<?
+}
 ?>			
+	
 			<div id="contenido">
 				<div class="titulo-con-fondo">
 					<h2 title="<?=$ley["titulo_real"]?>">Expediente <?=$ley["expediente"]?> : <?=recortar($ley["titulo_real"],70)?></h2>
@@ -104,16 +126,6 @@ if ($votoDosVeces) {
 								<div class="fb-like" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial" href="<?=$url_esta_ley?>">
 								</div>
 								<div class="twitterBanner">
-									<?
-									$texto_tweet = "Vot&aacute; la ley de " . $ley["titulo_lleca"];
-									if ($voto){
-										if ($voto["voto"]){
-											$texto_tweet = "Vot&eacute; a favor. Ley de " . $ley["titulo_lleca"];
-										} else {
-											$texto_tweet = "Vot&eacute; en contra. Ley de " . $ley["titulo_lleca"];
-										}
-									}
-									?>
 									<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$url_esta_ley?>" data-text="<?=$texto_tweet?>" data-via="votamostodos" data-lang="es" data-dnt="true"  data-count="none">Twittear</a>
 									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
 								</div>
@@ -143,7 +155,7 @@ if ($votoDosVeces) {
 													} 
 												});
 											}
-										});
+										}, {scope: 'email'});
 									  //alert("Hay que hacer click en 'Entrar' antes de poder votar.");
 									}
 								});
